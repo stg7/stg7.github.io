@@ -1,0 +1,19 @@
+html, body {
+    padding: 0;
+    height:100%;
+    font-family: sans-serif;
+}
+
+.logo {
+    color:#121c7e;
+    font-size: 3em;
+    font-family: 'Orbitron', sans-serif;
+}
+.logo:hover {
+    text-decoration: none;
+    color:#121c7e;
+}
+
+article em {
+    font-weight: bold;
+}
