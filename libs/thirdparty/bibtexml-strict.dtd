@@ -1,0 +1,408 @@
+<!--
+  - File: $Id: bibteXML-strict.dtd,v 1.9 2001/10/26 15:47:46 zegerh Exp $
+  -
+  - This DTD expresses XML markup similar to the BibTeX language
+  - specified for LaTeX, or actually its content model.
+  -
+  - For documentation on BibTeX, see
+  -   http://www.ctan.org/tex-archive/biblio/bibtex/distribs/doc/
+  -
+  - Suggested invocation:
+  -   <!DOCTYPE bibtex:file PUBLIC "-//Oren Patashnik//DTD bibtex//EN"
+  -         "http://bibtexml.sf.net/bibtexml.dtd" >
+  -   <bibtex:file xmlns:bibtex="http://bibtexml.sf.net/">
+  -      ...
+  -   </bibtex:file>
+  -
+  - When used as a module within another DTD:
+  -   <!ENTITY % bibtex PUBLIC
+  -    "-//Oren Patashnik//DTD bibtex//EN" "bibtexml.dtd">
+  -   %bibtex;
+  -   <!ELEMENT bibliography   (title?, bibtex:entry*) >
+  -
+  - Available from  http://bibtexml.sf.net/
+  -
+  - This code originally developed by
+  - Vidar Bronken Gundersen, http://bibtexml.sf.net/
+  - Reuse and repurposing is approved as long as this
+  - notification appears with the code.
+  -
+-->
+
+<!-- ..................................................................... -->
+<!-- Main structure -->
+
+<!-- bibtex:entry may contain one of the bibliographic types. -->
+<!ELEMENT bibtex:entry ( bibtex:article | bibtex:book | bibtex:booklet |
+                         bibtex:manual | bibtex:techreport |
+                         bibtex:mastersthesis | bibtex:phdthesis |
+                         bibtex:inbook | bibtex:incollection |
+                         bibtex:proceedings | bibtex:inproceedings |
+                         bibtex:conference |
+                         bibtex:unpublished | bibtex:misc ) >
+<!ATTLIST bibtex:entry
+   id         ID     #REQUIRED >
+
+<!-- bibtex:file is the document top element with a namespace indicator. -->
+<!ELEMENT bibtex:file  ( bibtex:entry )* >
+<!ATTLIST bibtex:file
+   xmlns:bibtex  CDATA  #FIXED  "http://bibtexml.sf.net/" >
+
+
+<!-- ..................................................................... -->
+<!-- Parameter entities -->
+
+<!-- these are additional elements often used, but not included in the
+     standard BibTeX distribution, these must be added to the
+     bibliography styles, otherwise these fields will be omitted by
+     the formatter -->
+
+<!ENTITY   %  n.user "( bibtex:abstract?, bibtex:affiliation?,
+                        bibtex:contents?, bibtex:copyright?,
+                        (bibtex:isbn | bibtex:issn)?,
+                        bibtex:keywords?, bibtex:language?, bibtex:lccn?,
+                        bibtex:location?, bibtex:mrnumber?, bibtex:price?,
+                        bibtex:size?, bibtex:url?, bibtex:category? )">
+
+<!ENTITY   %  n.common "(bibtex:key?, bibtex:annotate?, bibtex:crossref?,
+                        %n.user;)">
+
+<!-- content model used more than once -->
+
+<!ENTITY   %  n.InProceedings "(bibtex:author, bibtex:title, bibtex:booktitle,
+                    bibtex:year, bibtex:editor?,
+                    (bibtex:volume | bibtex:number)?,
+                    bibtex:series?, bibtex:pages?, bibtex:address?,
+                    bibtex:month?, bibtex:organization?, bibtex:publisher?,
+                    bibtex:note?, %n.common;)">
+
+<!ENTITY   %  n.PHDThesis "(bibtex:author, bibtex:title, bibtex:school,
+                    bibtex:year, bibtex:type?, bibtex:address?, bibtex:month?,
+                    bibtex:note?, %n.common;)">
+
+<!-- ..................................................................... -->
+<!-- Entries in the BibTeX database -->
+
+<!-- [article] An article from a journal or magazine.
+  -  Required fields: author, title, journal, year.
+  -  Optional fields: volume, number, pages, month, note. -->
+<!ELEMENT   bibtex:article    (bibtex:author, bibtex:title, bibtex:journal,
+               bibtex:year, bibtex:volume?, bibtex:number?, bibtex:pages?,
+               bibtex:month?, bibtex:note?, %n.common;)
+>
+
+<!-- [book] A book with an explicit publisher.
+  -  Required fields: author or editor, title, publisher, year.
+  -  Optional fields: volume or number, series, address,
+  -     edition, month, note. -->
+<!ELEMENT   bibtex:book    ((bibtex:author | bibtex:editor), bibtex:title,
+               bibtex:publisher, bibtex:year, (bibtex:volume | bibtex:number)?,
+               bibtex:series?, bibtex:address?, bibtex:edition?, bibtex:month?,
+               bibtex:note?, %n.common;)
+>
+
+<!-- [booklet] A work that is printed and bound, but without a named
+  -  publisher or sponsoring institution
+  -  Required field: title.
+  -  Optional fields: author, howpublished, address, month, year, note. -->
+<!ELEMENT   bibtex:booklet    (bibtex:author?, bibtex:title,
+               bibtex:howpublished?, bibtex:address?, bibtex:month?,
+               bibtex:year?, bibtex:note?, %n.common;)
+>
+
+<!-- [conference] The same as INPROCEEDINGS,
+  -  included for Scribe compatibility. -->
+<!ELEMENT   bibtex:conference      (%n.InProceedings;)
+>
+
+<!-- [inbook] A part of a book, which may be a chapter (or section or
+  -  whatever) and/or a range of pages.
+  -  Required fields: author or editor, title, chapter and/or pages,
+  -     publisher, year.
+  -  Optional fields: volume or number, series, type, address,
+  -     edition, month, note. -->
+<!ELEMENT   bibtex:inbook    ((bibtex:author | bibtex:editor), bibtex:title,
+               ((bibtex:chapter, bibtex:pages?) | bibtex:pages),
+               bibtex:publisher, bibtex:year, (bibtex:volume |
+               bibtex:number)?, bibtex:series?, bibtex:type?,
+               bibtex:address?, bibtex:edition?, bibtex:month?,
+               bibtex:note?, %n.common;)
+>
+
+<!--
+  - > I want to express that the elements a and/or b are legal that is one
+  - > of them or both must be present in the document instance (see the
+  - > element content for BibTeX entry `InBook').
+  - > How do I specify this in my DTD?
+  -
+  - Dave Peterson:
+  -  in content model:   ((a , b?) | b)          if order matters
+  -                      ((a , b?) | (b , a?))   otherwise
+-->
+
+<!-- [incollection] A part of a book having its own title.
+  -  Required fields: author, title, booktitle, publisher, year.
+  -  Optional fields: editor, volume or number, series, type,
+  -     chapter, pages, address, edition, month, note. -->
+<!ELEMENT   bibtex:incollection    (bibtex:author, bibtex:title,
+               bibtex:booktitle, bibtex:publisher, bibtex:year,
+               bibtex:editor?, (bibtex:volume | bibtex:number)?,
+               bibtex:series?, bibtex:type?, bibtex:chapter?,
+               bibtex:pages?, bibtex:address?, bibtex:edition?,
+               bibtex:month?, bibtex:note?,
+               %n.common;)
+>
+
+<!-- [inproceedings] An article in a conference proceedings.
+  -  Required fields: author, title, booktitle, year.
+  -  Optional fields: editor, volume or number, series, pages,
+  -     address, month, organization, publisher, note. -->
+<!ELEMENT   bibtex:inproceedings      (%n.InProceedings;)
+>
+
+<!-- [manual] Technical documentation
+  -  Required field: title.
+  -  Optional fields: author, organization, address,
+  -     edition, month, year, note. -->
+<!ELEMENT   bibtex:manual    (bibtex:author?, bibtex:title,
+               bibtex:organization?, bibtex:address?, bibtex:edition?,
+               bibtex:month?, bibtex:year?, bibtex:note?, %n.common;)
+>
+
+<!-- [mastersthesis] A Master's thesis.
+  -  Required fields: author, title, school, year.
+  -  Optional fields: type, address, month, note. -->
+<!ELEMENT   bibtex:mastersthesis      (%n.PHDThesis;)
+>
+
+<!-- [misc] Use this type when nothing else fits.
+  -  Required fields: none.
+  -  Optional fields: author, title, howpublished, month, year, note. -->
+<!ELEMENT   bibtex:misc    (bibtex:author?, bibtex:title?,
+               bibtex:howpublished?, bibtex:month?, bibtex:year?, bibtex:note?,
+               %n.common;)
+>
+
+<!-- [phdthesis] A PhD thesis.
+  -  Required fields: author, title, school, year.
+  -  Optional fields: type, address, month, note. -->
+<!ELEMENT   bibtex:phdthesis      (%n.PHDThesis;)
+>
+
+<!-- [proceedings] The proceedings of a conference.
+  -  Required fields: title, year.
+  -  Optional fields: editor, volume or number, series,
+  -     address, month, organization, publisher, note. -->
+<!ELEMENT   bibtex:proceedings    (bibtex:editor?, bibtex:title, bibtex:year,
+               (bibtex:volume | bibtex:number)?, bibtex:series?,
+               bibtex:address?, bibtex:month?, bibtex:organization?,
+               bibtex:publisher?, bibtex:note?, %n.common;)
+>
+
+<!-- [techreport] A report published by a school or other institution,
+  -  usually numbered within a series.
+  -  Required fields: author, title, institution, year.
+  -  Optional fields: type, number, address, month, note. -->
+<!ELEMENT   bibtex:techreport    (bibtex:author, bibtex:title,
+               bibtex:institution, bibtex:year, bibtex:type?, bibtex:number?,
+               bibtex:address?, bibtex:month?, bibtex:note?, %n.common;)
+>
+
+<!-- [unpublished] A document having an author and title, but not
+  -  formally published.
+  -  Required fields: author, title, note.
+  -  Optional fields: month, year. -->
+<!ELEMENT   bibtex:unpublished    (bibtex:author, bibtex:title, bibtex:note,
+               bibtex:month?, bibtex:year?, %n.common;)
+>
+
+<!-- ..................................................................... -->
+<!-- Fields from the standard bibliography styles -->
+
+<!--
+  - Below is a description of all fields recognized by the standard
+  - bibliography styles.  An entry can also contain other fields, which
+  - are ignored by those styles.
+  -
+  - [address] Usually the address of the publisher or other type of
+  - institution  For major publishing houses, van~Leunen recommends
+  - omitting the information entirely.  For small publishers, on the other
+  - hand, you can help the reader by giving the complete address.
+  -
+  - [annote] An annotation  It is not used by the standard bibliography
+  - styles, but may be used by others that produce an annotated
+  - bibliography.
+  -
+  - [author] The name(s) of the author(s), in the format described in the
+  - LaTeX book.
+  -
+  - [booktitle] Title of a book, part of which is being cited.  See the
+  - LaTeX book for how to type titles.  For book entries, use the title
+  - field instead.
+  -
+  - [chapter] A chapter (or section or whatever) number.
+  -
+  - [crossref] The database key of the entry being cross referenced.
+  -
+  - [edition] The edition of a book-for example, ``Second''.  This
+  - should be an ordinal, and should have the first letter capitalized, as
+  - shown here; the standard styles convert to lower case when necessary.
+  -
+  - [editor] Name(s) of editor(s), typed as indicated in the LaTeX book.
+  - If there is also an author field, then the editor field gives the
+  - editor of the book or collection in which the reference appears.
+  -
+  - [howpublished] How something strange has been published.  The first
+  - word should be capitalized.
+  -
+  - [institution] The sponsoring institution of a technical report.
+  -
+  - [journal] A journal name.  Abbreviations are provided for many
+  - journals; see the Local Guide.
+  -
+  - [key] Used for alphabetizing, cross referencing, and creating a label
+  - when the ``author'' information (described in Section [ref: ] is
+  - missing. This field should not be confused with the key that appears
+  - in the \cite command and at the beginning of the database entry.
+  -
+  - [month] The month in which the work was published or, for an
+  - unpublished work, in which it was written  You should use the
+  - standard three-letter abbreviation, as described in Appendix B.1.3 of
+  - the LaTeX book.
+  -
+  - [note] Any additional information that can help the reader.  The first
+  - word should be capitalized.
+  -
+  - [number] The number of a journal, magazine, technical report, or of a
+  - work in a series.  An issue of a journal or magazine is usually
+  - identified by its volume and number; the organization that issues a
+  - technical report usually gives it a number; and sometimes books are
+  - given numbers in a named series.
+  -
+  - [organization] The organization that sponsors a conference or that
+  - publishes a manual.
+  -
+  - [pages] One or more page numbers or range of numbers, such as 42-111
+  - or 7,41,73-97 or 43+ (the `+' in this last example indicates pages
+  - following that don't form a simple range).  To make it easier to
+  - maintain Scribe-compatible databases, the standard styles convert a
+  - single dash (as in 7-33) to the double dash used in TeX to denote
+  - number ranges (as in 7-33).
+  -
+  - [publisher] The publisher's name.
+  -
+  - [school] The name of the school where a thesis was written
+  -
+  - [series] The name of a series or set of books.  When citing an entire
+  - book, the the title field gives its title and an optional series field
+  - gives the name of a series or multi-volume set in which the book is
+  - published.
+  -
+  - [title] The work's title, typed as explained in the LaTeX book.
+  -
+  - [type] The type of a technical report-for example, ``Research
+  - Note''.
+  -
+  - [volume] The volume of a journal or multivolume book.
+  -
+  - [year] The year of publication or, for an unpublished work, the year
+  - it was written.  Generally it should consist of four numerals, such as
+  - 1984, although the standard styles can handle any year whose last four
+  - nonpunctuation characters are numerals, such as `(about 1984)'.
+-->
+
+<!ELEMENT   bibtex:address         (#PCDATA) >
+<!ELEMENT   bibtex:author          (#PCDATA) >
+<!ELEMENT   bibtex:booktitle       (#PCDATA) >
+<!ELEMENT   bibtex:chapter         (#PCDATA) >
+<!ELEMENT   bibtex:edition         (#PCDATA) >
+<!ELEMENT   bibtex:editor          (#PCDATA) >
+<!ELEMENT   bibtex:howpublished    (#PCDATA) >
+<!ELEMENT   bibtex:institution     (#PCDATA) >
+<!ELEMENT   bibtex:journal         (#PCDATA) >
+<!ELEMENT   bibtex:month           (#PCDATA) >
+<!ELEMENT   bibtex:note            (#PCDATA) >
+<!ELEMENT   bibtex:number          (#PCDATA) >
+<!ELEMENT   bibtex:organization    (#PCDATA) >
+<!ELEMENT   bibtex:pages           (#PCDATA) >
+<!ELEMENT   bibtex:publisher       (#PCDATA) >
+<!ELEMENT   bibtex:school          (#PCDATA) >
+<!ELEMENT   bibtex:series          (#PCDATA) >
+<!ELEMENT   bibtex:title           (#PCDATA) >
+<!ELEMENT   bibtex:type            (#PCDATA) >
+<!ELEMENT   bibtex:volume          (#PCDATA) >
+<!ELEMENT   bibtex:year            (#PCDATA) >
+
+<!-- These were not listed in the documentation for entry content, but
+  -  appeared in the list of fields in the BibTeX documentation -->
+
+<!ELEMENT   bibtex:annotate        (#PCDATA) >
+<!ELEMENT   bibtex:crossref        (#PCDATA) >
+<!ELEMENT   bibtex:key             (#PCDATA) >
+
+
+<!-- ..................................................................... -->
+<!-- Other popular fields
+  -
+  - From: http://www.ecst.csuchico.edu/~jacobsd/bib/formats/bibtex.html
+  - BibTeX is extremely popular, and many people have used it to store
+  - information. Here is a list of some of the more common fields:
+  -
+  - [affiliation]  The authors affiliation.
+  - [abstract]  An abstract of the work.
+  - [contents]  A Table of Contents
+  - [copyright]  Copyright information.
+  - [ISBN]  The International Standard Book Number.
+  - [ISSN]  The International Standard Serial Number.
+  -         Used to identify a journal.
+  - [keywords]  Key words used for searching or possibly for annotation.
+  - [language]  The language the document is in.
+  - [location]  A location associated with the entry,
+  -             such as the city in which a conference took place.
+  - [LCCN]  The Library of Congress Call Number.
+  -         I've also seen this as lib-congress.
+  - [mrnumber]  The Mathematical Reviews number.
+  - [price]  The price of the document.
+  - [size]  The physical dimensions of a work.
+  - [URL] The WWW Universal Resource Locator that points to the item being
+  -       referenced. This often is used for technical reports to point to the
+  -       ftp site where the postscript source of the report is located.
+  -
+  - When using BibTeX with LaTeX you need
+  - BibTeX style files to print these data.
+-->
+
+<!ELEMENT   bibtex:abstract        (#PCDATA) >
+<!ELEMENT   bibtex:affiliation     (#PCDATA) >
+<!ELEMENT   bibtex:contents        (#PCDATA) >
+<!ELEMENT   bibtex:copyright       (#PCDATA) >
+<!ELEMENT   bibtex:isbn            (#PCDATA) >
+<!ELEMENT   bibtex:issn            (#PCDATA) >
+<!ELEMENT   bibtex:keywords        (#PCDATA) >
+<!ELEMENT   bibtex:language        (#PCDATA) >
+<!ELEMENT   bibtex:lccn            (#PCDATA) >
+<!ELEMENT   bibtex:location        (#PCDATA) >
+<!ELEMENT   bibtex:mrnumber        (#PCDATA) >
+<!ELEMENT   bibtex:price           (#PCDATA) >
+<!ELEMENT   bibtex:size            (#PCDATA) >
+<!ELEMENT   bibtex:url             (#PCDATA) >
+
+
+<!-- Added by Zeger W. Hendrikse
+  - [category]  Category of this bibitem
+-->
+<!ELEMENT   bibtex:category      (#PCDATA) >
+
+
+<!-- ..................................................................... -->
+<!-- Predefined/reserved character entities -->
+
+<!ENTITY amp    "&#38;#38;">
+<!ENTITY lt     "&#38;#60;">
+<!ENTITY gt     "&#62;">
+<!ENTITY apos   "&#39;">
+<!ENTITY quot   "&#34;">
+
+
+<!-- ..................................................................... -->
+<!-- End of bibtex dtd -->

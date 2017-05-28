@@ -17,3 +17,7 @@ html, body {
 article em {
     font-weight: bold;
 }
+
+h2, h3, h4, h5 {
+    color:#121c7e;
+}
