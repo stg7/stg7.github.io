@@ -22,15 +22,13 @@
         <link rel="stylesheet" href="page.css">
 
         <link href='https://fonts.googleapis.com/css?family=Orbitron:900' rel='stylesheet' type='text/css'>
-
+<script src="html-table-of-contents.js" type="text/javascript"></script>
   </head>
 
-  <body>
+  <body onload="htmlTableOfContents();">
     <nav class="navbar">
         <div class="container">
-
             <a href="./index.html" class="logo">stg7.github.io</a>
-
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a href="http://github.com/stg7/" target="_blank">
@@ -42,24 +40,94 @@
     </nav>
     <hr>
     <div class="maincontent">
+        <section id="toc" class="container theme-showcase">
+        </section>
+        <hr>
         <section class="container theme-showcase" role="main" style="height:80%">
+            <!-- <h3>About</h3> -->
+            My name is Steve Göring, I'm a computer scientist and researcher.
+            Currently I'm working at the <a href="http://www.tu-ilmenau.de/en/audio-visual-technology/" target="_blank">Audiovisual Technology Group</a> in Ilmenau.
+            I will share some of my projects and research papers on this page.
+            Most of my developed software is public available on github.
+
+            <p>
+                Some of my notes are organzized in my Markdown Blog
+
+            </p>
 
             <h3>Projects</h3>
-            a few of my projects:
-
+            Here are some of my projects:
             <ul>
-                <li><a href="http://stg7.github.io/phrasit/" target="_blank">PhrasIt</a></li>
-              <!--
-                <li><a href="http://www.github.com/stg7/vinet/" target="_blank">ViNet</a></li>
-                -->
-                <li><a href="http://github.com/stg7/ctag/" target="_blank">Ctag</a></li>
-                <li><a href="http://stg7.bplaced.net/" target="_blank">my Homepage</a></li>
-                <li><a href="https://bitbucket.org/stg7/" target="_blank">bitbucket</a></li>
-                <li><a href="https://gist.github.com/stg7" target="_blank">my gists</a></li>
+                <li><a href="http://stg7.github.io/phrasit/" target="_blank">PhrasIt</a> -- an experimenal ngram search engine</li>
+                <li><a href="http://github.com/stg7/ctag/" target="_blank">Ctag</a> -- a generator for cloud tags</li>
+                <!--
+                <li><a href="http://stg7.bplaced.net/" target="_blank">my Homepage</a></li>-->
+                <li><a href="https://bitbucket.org/stg7/" target="_blank">bitbucket</a> -- my bitbacket page</li>
+                <li><a href="https://gist.github.com/stg7" target="_blank">my gists</a> -- my gists on github</li>
             </ul>
+            You can find more on my <a href="http://github.com/stg7/" target="_blank">github</a> page.
 
             <h3>Publications</h3>
-            {{pubs}}
+            In the last years I published several papers on conferences or wrote scientific theses (master, bachelor, or some other short texts).
+            <h4 id="bib-year-2017">2017</h4><p  class="bibentries-one-year">
+  <p class="bibentry">Steve G&#246;ring, Alexander Raake and Bernhard Feiten. <b>"A framework for QoE analysis of encrypted video streams." </b><i>2017 Ninth International Conference on Quality of Multimedia Experience (QoMEX)</i>. May&#160;2017.
+	
+	     pp.&#160;1-3.
+	
+		&#160;<a href="./pdfs/2017/qomex_enc_paper.pdf" target="_blank">[pdf]</a>
+		&#160;<a href="./pdfs/2017/qomex_enc_poster.pdf" target="_blank">[poster]</a></p>
+  <p class="bibentry">Alexander Raake, Marie-Neige Garcia, Werner Robitza, Peter List, Steve G&#246;ring and Bernhard Feiten. <b>"A bitstream-based, scalable video-quality model for HTTP adaptive streaming: ITU-T P.1203.1." </b><i>2017 Ninth International Conference on Quality of Multimedia Experience (QoMEX)</i>. May&#160;2017.
+	
+	     pp.&#160;1-6.
+	
+		&#160;<a href="./pdfs/2017/Qomex2017_Raake_CameraReady.pdf" target="_blank">[pdf]</a></p>
+</p>
+<h4 id="bib-year-2016">2016</h4><p  class="bibentries-one-year">
+  <p class="bibentry">Matthias Hagen, Michael V&#246;lske, Steve G&#246;ring, and Benno Stein. <b>"Axiomatic Result Re-Ranking." </b><i>Proceedings of the 25th ACM International Conference on Information and Knowledge Management (CIKM 16)</i>. 10&#160;2016.
+	
+		&#160;<a href="./pdfs/2016/axiomatic_result_re-ranking.pdf" target="_blank">[pdf]</a></p>
+</p>
+<h4 id="bib-year-2015">2015</h4><p  class="bibentries-one-year">
+  <p class="bibentry">Martin Potthast, Steve G&#246;ring, Paolo Rosso, and Benno Stein. <b>"Towards Data Submissions for Shared Tasks: First Experiences for the Task of Text Alignment." </b><i>Working Notes Papers of the CLEF 2015 Evaluation Labs</i>. 09&#160;2015.
+	
+		&#160;<a href="http://www.clef-initiative.eu/publication/working-notes">[url]</a>
+		&#160;<a href="./pdfs/2015/pan-text-alignment.pdf" target="_blank">[pdf]</a></p>
+  <p class="bibentry">Matthias Hagen, Steve G&#246;ring, Magdalena Keil, Olaoluwa Anifowose, Amir Othman, and Benno Stein. <b>"Webis at TREC 2015: Tasks and Total Recall Tracks." </b><i>24th International Text Retrieval Conference (TREC 15)</i>. 11&#160;2015.
+	
+		&#160;<a href="http://trec.nist.gov/pubs/trec24/trec2015.html">[url]</a>
+		&#160;<a href="./pdfs/2015/trec15.pdf" target="_blank">[pdf]</a></p>
+</p>
+<h4 id="bib-year-2014">2014</h4><p  class="bibentries-one-year">
+  <p class="bibentry">Matthias Hagen, Steve G&#246;ring, Maximilian Michel, Georg M&#252;ller, and Benno Stein. <b>"Webis at TREC 2014: Web, Session, and Contextual Suggestion Tracks." </b><i>23nd International Text Retrieval Conference (TREC 14)</i>. 11&#160;2014.
+	
+		&#160;<a href="http://trec.nist.gov/pubs/trec23/trec2014.html">[url]</a>
+		&#160;<a href="./pdfs/2014/trec14-proceedings-paper.pdf" target="_blank">[pdf]</a></p>
+</p>
+<h4 id="bib-year-2013">2013</h4><p  class="bibentries-one-year">
+  <p class="bibentry">Steve G&#246;ring. <b>"Effiziente In-Memory Verarbeitung von SPARQL-Anfragen auf gro&#223;en Datenmengen." </b>12&#160;2013.
+	Masterarbeit, 
+		&#160;<a href="./pdfs/2013/ma.pdf" target="_blank">[pdf]</a>
+		&#160;<a href="./pdfs/2013/ma_slides.pdf" target="_blank">[slides]</a></p>
+  <p class="bibentry">Rene Golembewski, Steve G&#246;ring, and Guenter Schaefer. <b>"Capabilities and Objectives of Distributed Image Processing on Smart Camera Systems." </b><i>18th IEEE Symposium on Computers and Communications (IEEE ISCC 2013)</i>. 07&#160;2013.
+	
+		&#160;<a href="./pdfs/2013/golembewski-iscc-2013.pdf" target="_blank">[pdf]</a></p>
+  <p class="bibentry">Steve G&#246;ring. <b>"Extraktion eines Bewegungsmodells basierend auf Kartenmaterial von OpenStreetMap." </b>04&#160;2013.
+	Projektseminar, 
+		&#160;<a href="./pdfs/2013/ps.pdf" target="_blank">[pdf]</a>
+		&#160;<a href="./pdfs/2013/ps_slides.pdf" target="_blank">[slides]</a></p>
+</p>
+<h4 id="bib-year-2012">2012</h4><p  class="bibentries-one-year">
+  <p class="bibentry">Steve G&#246;ring. <b>"Algorithmen zum L&#246;sen von Vertex und Set Cover Instanzen zur Planung von Angriffen auf Netzwerke." </b>06&#160;2012.
+	Hauptseminar, 
+		&#160;<a href="./pdfs/2012/hs.pdf" target="_blank">[pdf]</a>
+		&#160;<a href="./pdfs/2012/hs_slides.pdf" target="_blank">[slides]</a></p>
+  <p class="bibentry">Steve G&#246;ring. <b>"Automatisierter Entwurf eines Schemas f&#252;r Bitwise Dimensional Clustering." </b>01&#160;2012.
+	Bachelorarbeit, 
+		&#160;<a href="./pdfs/2012/ba.pdf" target="_blank">[pdf]</a>
+		&#160;<a href="bib/" target="_blank">[bib]</a>
+		&#160;<a href="./pdfs/2012/ba_slides.pdf" target="_blank">[slides]</a></p>
+</p>
+
             <h3>Contact</h3>
             <ul>
                 <li>email: <a href="mailto:stg7@gmx.de">stg7@gmx.de</a></li>
@@ -72,3 +140,4 @@
   </body>
 
 </html>
+
