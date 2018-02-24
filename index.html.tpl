@@ -50,11 +50,6 @@
             I will share some of my projects and research papers on this page.
             Most of my developed software is public available on github.
 
-            <p>
-                Some of my notes are organzized in my Markdown Blog
-
-            </p>
-
             <h3>Projects</h3>
             Here are some of my projects:
             <ul>
