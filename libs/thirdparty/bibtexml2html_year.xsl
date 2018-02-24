@@ -64,6 +64,11 @@
 	<xsl:apply-templates select="bibxml:year"/>
 	<xsl:apply-templates select="bibxml:pages"/>
 	<xsl:apply-templates select="bibxml:note"/>
+	<xsl:apply-templates select="bibxml:pdf"/>
+	<xsl:apply-templates select="bibxml:bib"/>
+	<xsl:apply-templates select="bibxml:code"/>
+	<xsl:apply-templates select="bibxml:slides"/>
+	<xsl:apply-templates select="bibxml:poster"/>
 </xsl:template>
 
 <xsl:template match="bibxml:inproceedings | bibxml:conference">
