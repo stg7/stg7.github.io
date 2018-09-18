@@ -49,7 +49,7 @@
             I'm a computer scientist and researcher.
             Currently I'm working at the <a href="http://www.tu-ilmenau.de/en/audio-visual-technology/" target="_blank">Audiovisual Technology Group</a> in Ilmenau.
             I will share some of my projects and research papers on this page.
-            Most of my developed software is public available on github.
+            Most of my developed software is publicly available on github.
 
             <h3>projects</h3>
             Here are some of my projects:
@@ -64,7 +64,7 @@
             You can find more on my <a href="http://github.com/stg7/" target="_blank">github</a> page.
 
             <h3>publications</h3>
-            In the last years I published several papers on conferences or wrote scientific theses (master, bachelor, or some other short texts).
+            In the last years I published several papers on conferences or wrote scientific theses/publications (master, bachelor, or some other short texts).
             {{pubs}}
             <h3>contact</h3>
             <ul>
