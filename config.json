@@ -2,8 +2,10 @@
     "infos": {
         "author": "Steve Göring",
         "title": "stg7.github.io",
-        "publications": "will be replaces by content of pub.bib"
+        "publications": "will be replaces by content of publications_file",
+        "photos": "will be replaced by photos of photos_dir"
     },
+    "photos_dir": "photos",
     "publications_file": "pub.bib",
     "template": "html.tpl",
     "start": "index.md"

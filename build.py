@@ -69,6 +69,18 @@ def postprocess(content, infos, pages):
     return content
 
 
+def read_photos(photos_dir):
+    res = []
+    small = list(glob.glob(photos_dir + "/small/*"))
+
+    for sm in small:
+        large = sm.replace("/small/", "/large/")
+        res.append(f"""
+            <a href="{large}" target="_blank"><img src="{sm}" /></a>
+            """.strip())
+    return "\n".join(res)
+
+
 def main(_):
     # argument parsing
     parser = argparse.ArgumentParser(description='build github static page',
@@ -90,6 +102,7 @@ def main(_):
 
     publications = read_bib_and_transform_to_html(config["publications_file"])
     config["infos"]["publications"] = publications
+    config["infos"]["photos"] = read_photos(config["photos_dir"])
     #print(publications)
 
     pages = list(glob.glob("**/*.md", recursive=True))
