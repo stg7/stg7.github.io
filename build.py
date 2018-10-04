@@ -26,7 +26,7 @@ def read_bib_and_transform_to_html(bibfile):
     #    html += """ <a href="#bib-year-{}" >{}</a> """.format(year, year)
 
     for year in sorted(bibtexs_per_year.keys(), key=int, reverse=True):
-        html += """<h4 id="bib-year-{}">{}</h4>""".format(year, year)
+        html += """<h2 id="bib-year-{}">{}</h2>""".format(year, year)
         bib_per_year = ""
         for bib in reversed(bibtexs_per_year[year]):
             bib_per_year += bib + "\n"
@@ -46,14 +46,14 @@ def read_config(configfilename):
     return config
 
 
-def linkname(x, page=""):
+def linkname(x, page, config):
     current_page = x == page
-    x = os.path.splitext(x)[0]
-    if x == "index":
+    if x == config["start"]:
         x = "start"
+    x = os.path.splitext(x)[0]
     x = x.title()
     if current_page:
-        x = "/" + x + "/"
+        x = "*" + x + "*"
     return x
 
 
@@ -95,15 +95,15 @@ def main(_):
     pages = list(glob.glob("**/*.md", recursive=True))
     pages = list(filter(lambda x: not x.startswith("libs/") and x != "README.md", pages))
 
-    if "index.md" in pages:
+    if config["start"] in pages:
         # first page is always index.md
-        pages = ["index.md"] + [y for y in pages if y != "index.md"]
+        pages = [config["start"]] + [y for y in pages if y != "index.md"]
 
     # parse each page to a html version
     for page in pages:
         html = os.path.splitext(page)[0] + ".html"
 
-        toc = mistletoe.markdown(" | ".join(["[{y}]({x})".format(x=x,y=linkname(x, page)) for x in pages]))
+        toc = mistletoe.markdown(" | ".join(["[{y}]({x})".format(x=x,y=linkname(x, page, config)) for x in pages]))
         config["infos"]["toc"] = toc
         page_md = read_file(page)
 
