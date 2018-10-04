@@ -1,6 +1,7 @@
 Here are some of my collected documents (mostly in german):
 
 ## math
+Documents for school math, e.g. example tasks for specific topics.
 
 * [funktionen](docs/mathe/funktionen.pdf)
 * [expo](docs/mathe/expo.pdf)
@@ -14,6 +15,7 @@ Here are some of my collected documents (mostly in german):
 * [fläche](docs/mathe/fläche.pdf)
 
 ## university
+Scripts, solutions or summaries of some university courses/tasks.
 
 * [diskrete_mathematik](docs/uni/diskrete_mathematik.pdf)
 * [iuk_script](docs/uni/iuk_script.pdf)
