@@ -2,6 +2,10 @@
 import sys
 import os
 import argparse
+import json
+import glob
+
+import mistletoe
 
 from libs.generate_html import group_by_years
 from libs.generate_html import bib_to_html
@@ -31,23 +35,88 @@ def read_bib_and_transform_to_html(bibfile):
     return html
 
 
+def read_config(configfilename):
+    try:
+        with open(configfilename) as cfg_fp:
+            config = json.load(cfg_fp)
+    except Exception as e:
+        print(f"{configfilename} is not valid, please check")
+        print(e)
+        sys.exit(1)
+    return config
+
+
+def linkname(x, page=""):
+    current_page = x == page
+    x = os.path.splitext(x)[0]
+    if x == "index":
+        x = "start"
+    x = x.title()
+    if current_page:
+        x = "/" + x + "/"
+    return x
+
+
+
+def postprocess(content, infos, pages):
+    for k in infos:
+        pattern = r"{{"+ k + r"}}"
+        content = content.replace(pattern, infos[k])
+
+    for md_page in pages:
+        html_page = os.path.splitext(md_page)[0] + ".html"
+        content = content.replace(md_page, html_page)
+    return content
+
+
 def main(_):
     # argument parsing
     parser = argparse.ArgumentParser(description='build github static page',
-                                     epilog="stg7 2017",
+                                     epilog="stg7 2017,2018",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument('--publications',
+    parser.add_argument('--config',
                         type=str,
-                        default="pub.bib",
-                        help="puplications as bibtex file")
-    parser.add_argument('--index_tpl',
-                        type=str,
-                        default="index.html.tpl",
-                        help="index template")
+                        default="config.json",
+                        help="config file")
 
     argsdict = vars(parser.parse_args())
 
-    index = read_file(argsdict["index_tpl"])
+    # read config
+    config = read_config(argsdict["config"])
+
+    #print(config)
+
+    template = read_file(config["template"])
+
+    publications = read_bib_and_transform_to_html(config["publications_file"])
+    config["infos"]["publications"] = publications
+    #print(publications)
+
+    pages = list(glob.glob("**/*.md", recursive=True))
+    pages = list(filter(lambda x: not x.startswith("libs/") and x != "README.md", pages))
+
+    if "index.md" in pages:
+        # first page is always index.md
+        pages = ["index.md"] + [y for y in pages if y != "index.md"]
+
+    # parse each page to a html version
+    for page in pages:
+        html = os.path.splitext(page)[0] + ".html"
+
+        toc = mistletoe.markdown(" | ".join(["[{y}]({x})".format(x=x,y=linkname(x, page)) for x in pages]))
+        config["infos"]["toc"] = toc
+        page_md = read_file(page)
+
+        content = mistletoe.markdown(page_md)
+        content = postprocess(content, config["infos"], pages)
+        config["infos"]["content"] = content
+        rendered_html = postprocess(template, config["infos"], pages)
+        print(f"{page} rendered to {html}")
+        with open(html, "w") as html_fp:
+            html_fp.write(rendered_html)
+
+    return
+    index = read_file()
 
     publications = read_bib_and_transform_to_html(argsdict["publications"])
 

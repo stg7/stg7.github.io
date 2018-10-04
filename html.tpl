@@ -3,9 +3,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content="Steve Göring">
+  <meta name="author" content="{{author}}">
    <head>
-    <title>stg7.github.io</title>
+    <title>{{title}}</title>
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -28,7 +28,7 @@
   <body>
     <nav class="navbar">
         <div class="container">
-            <a href="./index.html" class="logo">stg7.github.io</a>
+            <a href="./index.html" class="logo">{{title}}</a>
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a href="http://github.com/stg7/" target="_blank">
@@ -41,31 +41,11 @@
     <hr>
     <div class="maincontent">
         <section id="toc" class="container theme-showcase">
-        <p><a href="index.html">/Start/</a> | <a href="documents.html">Documents</a> | <a href="publications.html">Publications</a></p>
-
+        {{toc}}
         </section>
         <hr>
         <section class="container theme-showcase" role="main" style="height:80%">
-            <p>My name is Steve Göring.
-I'm a computer scientist and researcher.
-Currently I'm working at the <a href="http://www.tu-ilmenau.de/en/audio-visual-technology/" target="_blank">Audiovisual Technology Group</a> in Ilmenau.</p>
-<p>I will share some of my projects and research papers on this page.
-Most of my developed software is publicly available on github.</p>
-<h2>projects</h2>
-<p>Here are some of my projects:</p>
-<ul>
-<li><a href="http://stg7.github.io/phrasit/" target="_blank">PhrasIt</a> -- an experimental ngram search engine</li>
-<li><a href="http://github.com/stg7/ctag/" target="_blank">Ctag</a> -- a generator for cloud tags</li>
-<li><a href="https://bitbucket.org/stg7/" target="_blank">bitbucket</a> -- my bitbucket page</li>
-<li><a href="https://gist.github.com/stg7" target="_blank">my gists</a> -- my gists on github</li>
-</ul>
-<p>You can find more on my <a href="http://github.com/stg7/" target="_blank">github</a> page.</p>
-<h2>contact</h2>
-<ul>
-<li>email: <a href="mailto:stg7@gmx.de">stg7@gmx.de</a></li>
-<li>xmpp: stg7@jabber.ccc.de</li>
-</ul>
-
+            {{content}}
 
         </section>
     </div>

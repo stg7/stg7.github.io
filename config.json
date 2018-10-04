@@ -1,0 +1,10 @@
+{
+    "infos": {
+        "author": "Steve Göring",
+        "title": "stg7.github.io",
+        "publications": "will be replaces by content of pub.bib"
+    },
+    "publications_file": "pub.bib",
+    "template": "html.tpl",
+    "start": "index.md"
+}
