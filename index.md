@@ -20,3 +20,7 @@ You can find more on my <a href="http://github.com/stg7/" target="_blank">github
 * email: <a href="mailto:stg7@gmx.de">stg7@gmx.de</a>
 * xmpp: stg7@jabber.ccc.de
 
+
+## about
+This webpage is generated using a small python script + a markdown parser.
+Check [https://github.com/stg7/stg7.github.io](https://github.com/stg7/stg7.github.io) for more.
