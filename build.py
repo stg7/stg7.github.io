@@ -51,7 +51,7 @@ def linkname(x, page, config):
     if x == config["start"]:
         x = "start"
     x = os.path.splitext(x)[0]
-    x = x.title()
+    # x = x.title()
     if current_page:
         x = "*" + x + "*"
     return x
