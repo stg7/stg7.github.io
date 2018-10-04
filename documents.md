@@ -15,7 +15,6 @@ Here are some of my collected documents (mostly in german):
 
 ## university
 
-
 * [diskrete_mathematik](docs/uni/diskrete_mathematik.pdf)
 * [iuk_script](docs/uni/iuk_script.pdf)
 * [programmierparadigmen_funktionale_programmierung_haskell](docs/uni/programmierparadigmen_funktionale_programmierung_haskell.pdf)
