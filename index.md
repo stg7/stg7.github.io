@@ -11,6 +11,8 @@ Here are some of my projects:
 
 * <a href="http://stg7.github.io/phrasit/" target="_blank">PhrasIt</a> -- an experimental ngram search engine
 * <a href="http://github.com/stg7/ctag/" target="_blank">Ctag</a> -- a generator for cloud tags
+* <a href="https://github.com/Telecommunication-Telemedia-Assessment/avrateNG" target="_blank">AVRateNG</a> -- a software framework for conducting subjective video tests
+* <a href="https://github.com/itu-p1203/itu-p1203" target="_blank">ITU P.1203</a> -- reference implementation of P.1203
 * <a href="https://bitbucket.org/stg7/" target="_blank">bitbucket</a> -- my bitbucket page
 * <a href="https://gist.github.com/stg7" target="_blank">my gists</a> -- my gists on github
 
