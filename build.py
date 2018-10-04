@@ -22,8 +22,10 @@ def read_bib_and_transform_to_html(bibfile):
     bibtexs_per_year = group_by_years(bibfile)
     html = ""
 
-    #for year in sorted(bibtexs_per_year.keys(), key=int, reverse=True):
-    #    html += """ <a href="#bib-year-{}" >{}</a> """.format(year, year)
+    mini_toc = []
+    for year in sorted(bibtexs_per_year.keys(), key=int, reverse=True):
+        mini_toc.append(""" <a href="#bib-year-{}" >{}</a> """.format(year, year))
+    html = " | ".join(mini_toc) + " <br> \n"
 
     for year in sorted(bibtexs_per_year.keys(), key=int, reverse=True):
         html += """<h2 id="bib-year-{}">{}</h2>""".format(year, year)
