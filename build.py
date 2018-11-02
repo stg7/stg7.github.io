@@ -11,7 +11,6 @@ from libs.generate_html import group_by_years
 from libs.generate_html import bib_to_html
 
 
-
 def read_file(filename):
     with open(filename) as file:
         content = "".join(file.readlines())
@@ -57,7 +56,6 @@ def linkname(x, page, config):
     if current_page:
         x = "*" + x + "*"
     return x
-
 
 
 def postprocess(content, infos, pages):
@@ -131,11 +129,6 @@ def main(_):
             html_fp.write(rendered_html)
 
     return
-    index = read_file()
-
-    publications = read_bib_and_transform_to_html(argsdict["publications"])
-
-    print(index.replace("{{pubs}}", publications))
 
 
 if __name__ == "__main__":
