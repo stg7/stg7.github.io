@@ -70,6 +70,25 @@ def bib_to_html(bib):
     return html.replace('xmlns:bibxml="http://bibtexml.sf.net/"', "")
 
 
+def generate_bib_file(bib, bibfolder="./bibs"):
+    cleaned_bib = []
+    for l in bib.split("\n"):
+        if "@" in l:
+            bibkey = l.split("{")[1].split(",")[0]
+        if l.split("=")[0].strip() == "pdf":
+            continue
+        if l.split("=")[0].strip() == "slides":
+            continue
+        cleaned_bib.append(l)
+    cleaned_bib = "\n".join(cleaned_bib)
+    bibkey = bibkey.replace(":", "_")
+    os.makedirs(bibfolder, exist_ok=True)
+    bibfilename = bibfolder + "/" + bibkey + ".bib"
+    with open(bibfilename, "w") as bibfile:
+        bibfile.write(cleaned_bib)
+    return bibfilename
+
+
 def main(params):
     parser = argparse.ArgumentParser(description='generate html file based on bibtex file, sorted by year', epilog="stg7 2017", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('-bibtexfile', type=str, default="bib/publications.bib", help='input bibtex file')

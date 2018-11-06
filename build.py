@@ -9,6 +9,7 @@ import mistletoe
 
 from libs.generate_html import group_by_years
 from libs.generate_html import bib_to_html
+from libs.generate_html import generate_bib_file
 
 
 def read_file(filename):
@@ -30,9 +31,12 @@ def read_bib_and_transform_to_html(bibfile):
         html += """<h2 id="bib-year-{}">{}</h2>""".format(year, year)
         bib_per_year = ""
         for bib in reversed(bibtexs_per_year[year]):
-            bib_per_year += bib + "\n"
-        html += bib_to_html(bib_per_year)
-
+            #bib_per_year += bib + "\n"
+            bibfilename = generate_bib_file(bib)
+            x = bib.split("\n")
+            x = [x[0]] + ["bib={" + bibfilename + "},"] + x[1:]
+            bib = "\n".join(x)
+            html += bib_to_html(bib)
     return html
 
 
@@ -127,8 +131,6 @@ def main(_):
         print(f"{page} rendered to {html}")
         with open(html, "w") as html_fp:
             html_fp.write(rendered_html)
-
-    return
 
 
 if __name__ == "__main__":
