@@ -8,7 +8,7 @@ Most of my developed software is publicly available on github.
 
 ## research
 
-My current research intersts are video/image quality prediction, image appeal combined with machine learning and processing of large datasets.
+My current research interests are video/image quality prediction, image appeal combined with machine learning and processing of large datasets.
 
 
 For more checkout my [Publications](publications.md).
