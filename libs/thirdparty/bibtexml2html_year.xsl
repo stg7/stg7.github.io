@@ -82,8 +82,8 @@
 	<xsl:apply-templates select="bibxml:month"/>
 	<xsl:apply-templates select="bibxml:year"/>
 	<xsl:apply-templates select="bibxml:pages"/>
-	<xsl:apply-templates select="bibxml:url"/>
 	<xsl:apply-templates select="bibxml:note"/>
+	<xsl:apply-templates select="bibxml:url"/>
 	<xsl:apply-templates select="bibxml:pdf"/>
 	<xsl:apply-templates select="bibxml:bib"/>
 	<xsl:apply-templates select="bibxml:code"/>
@@ -104,8 +104,8 @@
 	</xsl:if>
 	<xsl:apply-templates select="bibxml:month"/>
 	<xsl:apply-templates select="bibxml:year"/>
-	<xsl:apply-templates select="bibxml:url"/>
 	<xsl:apply-templates select="bibxml:note"/>
+	<xsl:apply-templates select="bibxml:url"/>
 	<xsl:apply-templates select="bibxml:pdf"/>
 	<xsl:apply-templates select="bibxml:bib"/>
 	<xsl:apply-templates select="bibxml:code"/>
