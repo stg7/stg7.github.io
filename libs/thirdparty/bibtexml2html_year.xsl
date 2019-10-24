@@ -65,6 +65,7 @@
 	<xsl:apply-templates select="bibxml:pages"/>
 	<xsl:apply-templates select="bibxml:note"/>
 	<xsl:apply-templates select="bibxml:pdf"/>
+	<xsl:apply-templates select="bibxml:demo"/>
 	<xsl:apply-templates select="bibxml:bib"/>
 	<xsl:apply-templates select="bibxml:code"/>
 	<xsl:apply-templates select="bibxml:slides"/>
@@ -85,6 +86,7 @@
 	<xsl:apply-templates select="bibxml:note"/>
 	<xsl:apply-templates select="bibxml:url"/>
 	<xsl:apply-templates select="bibxml:pdf"/>
+	<xsl:apply-templates select="bibxml:demo"/>
 	<xsl:apply-templates select="bibxml:bib"/>
 	<xsl:apply-templates select="bibxml:code"/>
 	<xsl:apply-templates select="bibxml:slides"/>
@@ -107,6 +109,7 @@
 	<xsl:apply-templates select="bibxml:note"/>
 	<xsl:apply-templates select="bibxml:url"/>
 	<xsl:apply-templates select="bibxml:pdf"/>
+	<xsl:apply-templates select="bibxml:demo"/>
 	<xsl:apply-templates select="bibxml:bib"/>
 	<xsl:apply-templates select="bibxml:code"/>
 	<xsl:apply-templates select="bibxml:slides"/>
@@ -132,6 +135,7 @@
 	<xsl:apply-templates select="bibxml:year"/>
 	<xsl:apply-templates select="bibxml:note"/>
 	<xsl:apply-templates select="bibxml:pdf"/>
+	<xsl:apply-templates select="bibxml:demo"/>
 	<xsl:apply-templates select="bibxml:bib"/>
 	<xsl:apply-templates select="bibxml:code"/>
 	<xsl:apply-templates select="bibxml:slides"/>
@@ -154,6 +158,7 @@
 	<xsl:apply-templates select="bibxml:type"/>
 	<xsl:apply-templates select="bibxml:note"/>
 	<xsl:apply-templates select="bibxml:pdf"/>
+	<xsl:apply-templates select="bibxml:demo"/>
 	<xsl:apply-templates select="bibxml:bib"/>
 	<xsl:apply-templates select="bibxml:code"/>
 	<xsl:apply-templates select="bibxml:slides"/>
@@ -172,6 +177,7 @@
 	<xsl:apply-templates select="bibxml:year"/>
 	<xsl:apply-templates select="bibxml:note"/>
 	<xsl:apply-templates select="bibxml:pdf"/>
+	<xsl:apply-templates select="bibxml:demo"/>
 	<xsl:apply-templates select="bibxml:bib"/>
 	<xsl:apply-templates select="bibxml:code"/>
 	<xsl:apply-templates select="bibxml:slides"/>
@@ -183,6 +189,7 @@
 	<xsl:apply-templates select="bibxml:title"/>
 	<xsl:apply-templates select="bibxml:note"/>
 	<xsl:apply-templates select="bibxml:pdf"/>
+	<xsl:apply-templates select="bibxml:demo"/>
 	<xsl:apply-templates select="bibxml:bib"/>
 	<xsl:apply-templates select="bibxml:code"/>
 	<xsl:apply-templates select="bibxml:slides"/>
@@ -201,6 +208,7 @@
 	<xsl:apply-templates select="bibxml:year"/>
 	<xsl:apply-templates select="bibxml:note"/>
 	<xsl:apply-templates select="bibxml:pdf"/>
+	<xsl:apply-templates select="bibxml:demo"/>
 	<xsl:apply-templates select="bibxml:bib"/>
 	<xsl:apply-templates select="bibxml:code"/>
 	<xsl:apply-templates select="bibxml:slides"/>
@@ -223,6 +231,7 @@
 	<xsl:apply-templates select="bibxml:year"/>
 	<xsl:apply-templates select="bibxml:note"/>
 	<xsl:apply-templates select="bibxml:pdf"/>
+	<xsl:apply-templates select="bibxml:demo"/>
 	<xsl:apply-templates select="bibxml:bib"/>
 	<xsl:apply-templates select="bibxml:code"/>
 	<xsl:apply-templates select="bibxml:slides"/>
@@ -240,6 +249,7 @@
 	<xsl:apply-templates select="bibxml:year"/>
 	<xsl:apply-templates select="bibxml:note"/>
 	<xsl:apply-templates select="bibxml:pdf"/>
+	<xsl:apply-templates select="bibxml:demo"/>
 	<xsl:apply-templates select="bibxml:bib"/>
 	<xsl:apply-templates select="bibxml:code"/>
 	<xsl:apply-templates select="bibxml:slides"/>
@@ -275,6 +285,7 @@
 	<xsl:apply-templates select="bibxml:pages"/>
 	<xsl:apply-templates select="bibxml:note"/>
 	<xsl:apply-templates select="bibxml:pdf"/>
+	<xsl:apply-templates select="bibxml:demo"/>
 	<xsl:apply-templates select="bibxml:bib"/>
 	<xsl:apply-templates select="bibxml:code"/>
 	<xsl:apply-templates select="bibxml:slides"/>
@@ -300,6 +311,7 @@
 	<xsl:apply-templates select="bibxml:pages"/>
 	<xsl:apply-templates select="bibxml:note"/>
 	<xsl:apply-templates select="bibxml:pdf"/>
+	<xsl:apply-templates select="bibxml:demo"/>
 	<xsl:apply-templates select="bibxml:bib"/>
 	<xsl:apply-templates select="bibxml:code"/>
 	<xsl:apply-templates select="bibxml:slides"/>
@@ -396,7 +408,11 @@
 		&#160;<a href="{.}" target="_blank">[pdf]</a>
 	</xsl:if>
 </xsl:template>
-
+<xsl:template match="bibxml:demo">
+	<xsl:if test=". != ''">
+		&#160;<a href="{.}" target="_blank">[demo]</a>
+	</xsl:if>
+</xsl:template>
 <xsl:template match="bibxml:code">
 	<xsl:if test=". != ''">
 		&#160;<a href="{.}" target="_blank">[code]</a>

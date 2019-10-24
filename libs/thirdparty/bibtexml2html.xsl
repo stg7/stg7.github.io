@@ -7,7 +7,7 @@
 
 <!--
 	Modified by SES 2003.01.15
-	
+
 	&#160; = &nbsp;
 
   -->
@@ -47,8 +47,8 @@
     </LI>
 </xsl:for-each>
 </OL>
-  <!-- 
-     - Footer info 
+  <!--
+     - Footer info
      -->
 <hr size = "4" />
 Generated using modified bibtex2xml.py and bibList.xsl.
@@ -57,9 +57,9 @@ Generated using modified bibtex2xml.py and bibList.xsl.
 </body>
 </xsl:template>
 
-<!-- 
-   - bibtex entry types 
-   - follows bibtex specs mostly 
+<!--
+   - bibtex entry types
+   - follows bibtex specs mostly
    -->
 
 
@@ -270,19 +270,19 @@ Generated using modified bibtex2xml.py and bibList.xsl.
 </xsl:template>
 
 <xsl:template match="bibxml:volume">
-	<xsl:if test=". != ''">	
+	<xsl:if test=". != ''">
 	     vol.&#160;<xsl:value-of select="."/>.
 	</xsl:if>
 </xsl:template>
 
 <xsl:template match="bibxml:edition">
-	<xsl:if test=". != ''">	
+	<xsl:if test=". != ''">
 	     ed.&#160;<xsl:value-of select="."/>.
 	</xsl:if>
 </xsl:template>
 
 <xsl:template match="bibxml:title">
-	<xsl:if test=". != ''">	
+	<xsl:if test=". != ''">
 		 <b>"<xsl:value-of select="."/>." </b>
 	</xsl:if>
 </xsl:template>
@@ -295,7 +295,7 @@ Generated using modified bibtex2xml.py and bibList.xsl.
 </xsl:template>
 
 <xsl:template match="bibxml:address">
-	<xsl:if test=". != ''">	
+	<xsl:if test=". != ''">
 		 <xsl:value-of select="."/>.
 	</xsl:if>
 </xsl:template>
@@ -319,25 +319,25 @@ Generated using modified bibtex2xml.py and bibList.xsl.
 	<xsl:when test="count(../bibxml:author) = 2 and position() = 1"> and </xsl:when>
 	<xsl:when test="position() + 1 != count(../bibxml:author)">, </xsl:when>
 	<xsl:when test="position() + 1 = count(../bibxml:author)">, and </xsl:when>
-	</xsl:choose>	
+	</xsl:choose>
 </xsl:template>
 
 <xsl:template match="bibxml:editor |
                      bibxml:number | bibxml:series | bibxml:institution |
                     bibxml:organization |
                      bibxml:publisher | bibxml:school |
-                     bibxml:type | bibxml:bookshelf | 
+                     bibxml:type | bibxml:bookshelf |
                      bibxml:annotate | bibxml:crossref |
-                     bibxml:issn | bibxml:isbn |  bibxml:uri | 
+                     bibxml:issn | bibxml:isbn |  bibxml:uri |
                      bibxml:urn">
      <xsl:value-of select="."/>
      <xsl:if test="position() + 1 != last()">, </xsl:if>
 </xsl:template>
 
 <xsl:template match="bibxml:url">
-	<xsl:if test=". != ''">	
+	<xsl:if test=". != ''">
 		<a href="{.}">
-		<xsl:value-of select="."/>	
+		<xsl:value-of select="."/>
 		</a>
 	</xsl:if>
 </xsl:template>
@@ -345,6 +345,6 @@ Generated using modified bibtex2xml.py and bibList.xsl.
 <!--
    - Do not print the following entries
    -->
-<xsl:template match="bibxml:category | bibxml:key | 
+<xsl:template match="bibxml:category | bibxml:key |
                      bibxml:keywords"/>
 </xsl:stylesheet>
