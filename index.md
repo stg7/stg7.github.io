@@ -25,6 +25,11 @@ Here are some of my projects:
 
 You can find more on my <a href="http://github.com/stg7/" target="_blank">github</a> page.
 
+## latest-top-5 projects
+
+<div id="top-5-projects">
+</div>
+
 ## contact
 * email: <a href="mailto:stg7@gmx.de">stg7@gmx.de</a>
 * xmpp: stg7@jabber.ccc.de
