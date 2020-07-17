@@ -73,7 +73,7 @@
             <a href="./index.html" class="logo">{{title}}</a>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="http://github.com/stg7/" target="_blank">
+                    <a href="https://github.com/stg7/" target="_blank">
                     <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" style="height:1.5em" />
                     </a>
                 </li>

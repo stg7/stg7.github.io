@@ -31,8 +31,8 @@ You can find more on my <a href="http://github.com/stg7/" target="_blank">github
 </div>
 
 ## contact
-* email: <a href="mailto:stg7@gmx.de">stg7@gmx.de</a>
-* xmpp: stg7@jabber.ccc.de
+* email: <a href="mailto:stg7[at]gmx.de">stg7[at]gmx.de</a>
+* xmpp: stg7[at]jabber.ccc.de
 
 
 ## about
