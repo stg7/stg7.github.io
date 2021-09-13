@@ -34,6 +34,8 @@ You can find more on my <a href="http://github.com/stg7/" target="_blank">github
 * email: <a href="mailto:stg7[at]gmx.de">stg7[at]gmx.de</a>
 * xmpp: stg7[at]jabber.ccc.de
 
+If you like my software or research you can also [donate me a :coffee:](https://ko-fi.com/binarys3v3n).
+
 
 ## about
 This webpage is generated using a small python script + a markdown parser.
