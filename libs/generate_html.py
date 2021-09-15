@@ -67,6 +67,7 @@ def bib_to_html(bib):
     transform = ET.XSLT(xslt)
     newdom = transform(dom)
     html = str(ET.tostring(newdom, pretty_print=True), "utf-8")
+    html = html.replace(r"$^\circ$", "&deg;")
     return html.replace('xmlns:bibxml="http://bibtexml.sf.net/"', "")
 
 
