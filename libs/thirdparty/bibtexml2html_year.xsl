@@ -138,6 +138,7 @@
     <xsl:apply-templates select="bibxml:month"/>
     <xsl:apply-templates select="bibxml:year"/>
     <xsl:apply-templates select="bibxml:note"/>
+    <xsl:apply-templates select="bibxml:url"/>
     <xsl:apply-templates select="bibxml:pdf"/>
     <xsl:apply-templates select="bibxml:video"/>
     <xsl:apply-templates select="bibxml:demo"/>
@@ -162,6 +163,7 @@
     <xsl:apply-templates select="bibxml:year"/>
     <xsl:apply-templates select="bibxml:type"/>
     <xsl:apply-templates select="bibxml:note"/>
+    <xsl:apply-templates select="bibxml:url"/>
     <xsl:apply-templates select="bibxml:pdf"/>
     <xsl:apply-templates select="bibxml:video"/>
     <xsl:apply-templates select="bibxml:demo"/>
@@ -182,6 +184,7 @@
     <xsl:apply-templates select="bibxml:month"/>
     <xsl:apply-templates select="bibxml:year"/>
     <xsl:apply-templates select="bibxml:note"/>
+    <xsl:apply-templates select="bibxml:url"/>
     <xsl:apply-templates select="bibxml:pdf"/>
     <xsl:apply-templates select="bibxml:video"/>
     <xsl:apply-templates select="bibxml:demo"/>
