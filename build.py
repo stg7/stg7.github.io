@@ -114,7 +114,7 @@ def main(_):
 
     if config["start"] in pages:
         # first page is always index.md
-        pages = [config["start"]] + [y for y in pages if y != "index.md"]
+        pages = [config["start"]] + sorted([y for y in pages if y != "index.md"])
 
     # parse each page to a html version
     for page in pages:
